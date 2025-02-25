@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Guess the Number Game</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; }
+      input { padding: 5px; font-size: 16px; }
+      button { padding: 5px 10px; font-size: 16px; }
+    </style>
+  </head>
+  <body>
+    <h1>Guess the Number!</h1>
+    <p>I'm thinking of a number between 1 and 10. Can you guess it?</p>
+    <!-- Input field for the user's guess -->
+    <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="10" />
+    <!-- Button to submit the guess -->
+    <button id="guessButton">Guess</button>
+    <!-- Paragraph to show the result message -->
+    <p id="result"></p>
+
+    <script>
+      // Generate a random number between 1 and 10
+      var secretNumber = Math.floor(Math.random() * 10) + 1;
+
+      // Function to check the user's guess
+      function checkGuess() {
+        // Get the guess from the input field and convert it to a number
+        var guess = parseInt(document.getElementById("guessInput").value, 10);
+
+        // Check if the input is a valid number
+        if (isNaN(guess)) {
+          document.getElementById("result").innerHTML = "Please enter a valid number!";
+          return;
+        }
+
+        // Compare the guess with the secret number
+        if (guess === secretNumber) {
+          document.getElementById("result").innerHTML = "Congratulations! You guessed it right!";
+        } else if (guess < secretNumber) {
+          document.getElementById("result").innerHTML = "Too low! Try a higher number.";
+        } else {
+          document.getElementById("result").innerHTML = "Too high! Try a lower number.";
+        }
+      }
+
+      // Add a click event to the button that calls the checkGuess function
+      document.getElementById("guessButton").addEventListener("click", checkGuess);
+    </script>
+  </body>
+</html>
